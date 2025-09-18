@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferzov Stars Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(30, 30, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #6a5acd, #9370db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            color: #a5b4cb;
+            font-size: 1.1rem;
+        }
+        
+        .main-btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(45deg, #6a5acd, #9370db);
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .main-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(106, 90, 205, 0.4);
+        }
+        
+        .calculator {
+            display: none;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #cdd6f4;
+            font-size: 1.1rem;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 30, 46, 0.6);
+            color: #fff;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #6a5acd;
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.3);
+        }
+        
+        .price-display {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(30, 30, 46, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .price-display h3 {
+            color: #cdd6f4;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .price-display .amount {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #a6e3a1;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #6a5acd, #9370db);
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(106, 90, 205, 0.4);
+        }
+        
+        .btn-buy {
+            background: linear-gradient(45deg, #a6e3a1, #94e2d5);
+            color: #1e1e2e;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(166, 227, 161, 0.4);
+        }
+        
+        .instructions {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(30, 30, 46, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .additional-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .additional-btn {
+            display: block;
+            padding: 15px;
+            background: rgba(30, 30, 46, 0.6);
+            color: white;
+            text-align: center;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .additional-btn:hover {
+            background: rgba(106, 90, 205, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .visible {
+            display: block;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-btn {
+                padding: 16px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-star"></i> Ferzov Stars Shop</h1>
+            <p>Купить звёзды Telegram просто и удобно</p>
+        </div>
+        
+        <button class="main-btn" onclick="showCalculator()">
+            <i class="fas fa-star"></i> Звёзды Telegram (1,55₽ за штуку)
+        </button>
+        
+        <div class="additional-buttons">
+            <a href="https://t.me/userferz" class="additional-btn" target="_blank">
+                <i class="fas fa-headset"></i> Поддержка
+            </a>
+            <a href="https://t.me/ferzovshopbot" class="additional-btn" target="_blank">
+                <i class="fas fa-robot"></i> Бот телеграм для покупки
+            </a>
+        </div>
+    </div>
+
+    <div class="container calculator hidden" id="calculator">
+        <button class="back-btn" onclick="hideCalculator()">
+            <i class="fas fa-arrow-left"></i> Назад
+        </button>
+        
+        <div class="header">
+            <h2><i class="fas fa-calculator"></i> Калькулятор звёзд</h2>
+            <p>1 звезда = 1,55₽</p>
+        </div>
+        
+        <div class="input-group">
+            <label for="stars-count">Введите количество звёзд:</label>
+            <input type="number" id="stars-count" min="1" value="1" placeholder="Количество">
+        </div>
+        
+        <button class="btn btn-primary" onclick="calculatePrice()">
+            <i class="fas fa-calculator"></i> Рассчитать стоимость
+        </button>
+        
+        <div id="price-result" class="hidden">
+            <div class="price-display">
+                <h3>Стоимость заказа:</h3>
+                <div class="amount" id="total-price">0 ₽</div>
+            </div>
+            
+            <a href="https://t.me/userferz" class="btn btn-buy" id="buy-button" target="_blank">
+                <i class="fas fa-shopping-cart"></i> Купить (0 ₽)
+            </a>
+            
+            <div class="instructions">
+                <p>Для покупки проведите оплату по номеру +79000396631, а после нажмите на кнопку "Купить", и напишите название товара</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCalculator() {
+            document.querySelector('.container:first-child').classList.add('hidden');
+            document.getElementById('calculator').classList.remove('hidden');
+            document.getElementById('calculator').classList.add('visible');
+            calculatePrice(); // Рассчитать стоимость сразу
+        }
+        
+        function hideCalculator() {
+            document.getElementById('calculator').classList.add('hidden');
+            document.querySelector('.container:first-child').classList.remove('hidden');
+        }
+        
+        function calculatePrice() {
+            // Получаем количество звезд
+            const starsCount = parseInt(document.getElementById('stars-count').value) || 0;
+            
+            // Рассчитываем стоимость
+            const pricePerStar = 1.55;
+            const totalPrice = (starsCount * pricePerStar).toFixed(2);
+            
+            // Показываем результат
+            document.getElementById('total-price').textContent = totalPrice + ' ₽';
+            document.getElementById('buy-button').textContent = 'Купить (' + totalPrice + ' ₽)';
+            document.getElementById('buy-button').href = `https://t.me/userferz?text=Хочу+купить+${starsCount}+звёзд+за+${totalPrice}руб`;
+            
+            // Показываем блок с результатом
+            document.getElementById('price-result').classList.remove('hidden');
+        }
+        
+        // Рассчитываем стоимость при изменении значения
+        document.getElementById('stars-count').addEventListener('input', function() {
+            if (document.getElementById('price-result').classList.contains('hidden')) {
+                return;
+            }
+            calculatePrice();
+        });
+    </script>
+</body>
+</html>
